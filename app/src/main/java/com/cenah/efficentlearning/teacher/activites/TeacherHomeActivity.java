@@ -14,6 +14,7 @@ import com.cenah.efficentlearning.R;
 import com.cenah.efficentlearning.admin.fragments.AdminMainPageFragment;
 import com.cenah.efficentlearning.ProfileFragment;
 import com.cenah.efficentlearning.student.fragments.StudentMainPageFragment;
+import com.cenah.efficentlearning.teacher.fragments.TeacherMainPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class TeacherHomeActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        fragment = new StudentMainPageFragment();
+                        fragment = new TeacherMainPageFragment();
                         setFragment(fragment, false);
                         return true;
 
@@ -63,7 +64,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
             }
         });
 
-        fragment = new AdminMainPageFragment();
+        fragment = new TeacherMainPageFragment();
         setFragment(fragment, true);
 
 

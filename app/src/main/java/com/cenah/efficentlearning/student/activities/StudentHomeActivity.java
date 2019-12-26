@@ -62,7 +62,7 @@ public class StudentHomeActivity extends AppCompatActivity {
             }
         });
 
-        fragment = new AdminMainPageFragment();
+        fragment = new StudentMainPageFragment();
         setFragment(fragment, true);
 
 

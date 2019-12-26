@@ -1,9 +1,11 @@
 package com.cenah.efficentlearning.teacher.fragments;
 
 
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.cenah.efficentlearning.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TeacherMainPageFragment extends Fragment {
 
     private View rootView;
@@ -30,30 +30,19 @@ public class TeacherMainPageFragment extends Fragment {
 
     private void clicklistners() {
 
-     /*   rootView.findViewById(R.id.btnStudent).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.btnStudent).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminStudentActivity.class));
+                startActivity(new Intent(getActivity(), TeachserStudentActivity.class));
             }
         });
-        rootView.findViewById(R.id.btnTeacher).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.btnClass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminTeacherActivity.class));
+                startActivity(new Intent(getActivity(), TeacherClassActivity.class));
             }
         });
-        rootView.findViewById(R.id.btnCourse).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminCourseActivity.class));
-            }
-        });
-        rootView.findViewById(R.id.btnAdmin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminUserActivity.class));
-            }
-        });*/
+
     }
 
 }
