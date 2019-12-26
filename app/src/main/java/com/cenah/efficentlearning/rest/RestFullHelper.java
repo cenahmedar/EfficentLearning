@@ -2,6 +2,7 @@ package com.cenah.efficentlearning.rest;
 
 
 import com.cenah.efficentlearning.rest.services.StudentService;
+import com.cenah.efficentlearning.rest.services.TeacherService;
 import com.cenah.efficentlearning.rest.services.UserService;
 
 public class RestFullHelper {
@@ -21,5 +22,9 @@ public class RestFullHelper {
 
     public StudentService getStudentClient() {
         return RetrofitClient.getUnsafeClient(BASE_URL).create(StudentService.class);
+    }
+
+    public TeacherService getTeacherClient() {
+        return RetrofitClient.getUnsafeClient(BASE_URL).create(TeacherService.class);
     }
 }

@@ -11,10 +11,13 @@ import android.widget.Toast;
 
 import com.cenah.efficentlearning.admin.activities.AdminHomeActivity;
 import com.cenah.efficentlearning.helpers.ApplicationPreferenceManager;
+import com.cenah.efficentlearning.helpers.AuthMainPageIntent;
 import com.cenah.efficentlearning.helpers.PrograssBarDialog;
 import com.cenah.efficentlearning.models.Auth;
 import com.cenah.efficentlearning.models.AuthBody;
+import com.cenah.efficentlearning.models.Shared;
 import com.cenah.efficentlearning.models.User;
+import com.cenah.efficentlearning.models.UserRole;
 import com.cenah.efficentlearning.rest.RestFullHelper;
 import com.cenah.efficentlearning.rest.services.UserService;
 
@@ -48,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                startActivity(new Intent(getApplicationContext(),HomePageActivity.class));
 //                finish();
-
+                prograssBarDialog.show();
                 AuthBody body = new AuthBody(edtUserName.getText().toString().trim(), edtPass.getText().toString().trim());
                 Call<Auth> call = userService.Login(body);
                 call.enqueue(new Callback<Auth>() {
@@ -61,42 +64,44 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                             return;
                         }
-                       // Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
-                       // new ApplicationPreferenceManager(getApplicationContext()).saveSharedInfo(response.body());
-
+                        prograssBarDialog.hide();
                         GetUserWithRole(response.body());
 
                     }
 
                     @Override
                     public void onFailure(@NotNull Call<Auth> call, @NotNull Throwable t) {
+                        prograssBarDialog.hide();
                         Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         });
+
+
     }
 
     private void GetUserWithRole(final Auth body) {
-        Call<User> call = userService.GetUserWithRole(body.token);
-        call.enqueue(new Callback<User>() {
+        prograssBarDialog.show();
+        Call<UserRole> call = userService.GetUserWithRole("Bearer " +body.token);
+        call.enqueue(new Callback<UserRole>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<UserRole> call, Response<UserRole> response) {
+                prograssBarDialog.hide();
                 if (!response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
-                     //return;
+                     return;
                 }
                 Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), AdminHomeActivity.class));
-                finish();
+                new ApplicationPreferenceManager(getApplicationContext()).saveSharedInfo(new Shared(response.body(),body));
+                new AuthMainPageIntent(response.body(),LoginActivity.this).Page();
 
-                 new ApplicationPreferenceManager(getApplicationContext()).saveSharedInfo(body);
+
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<UserRole> call, Throwable t) {
+                prograssBarDialog.hide();
                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.cenah.efficentlearning.models.Auth;
+import com.cenah.efficentlearning.models.Shared;
 import com.google.gson.Gson;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -30,16 +31,20 @@ public class ApplicationPreferenceManager {
     }
 
 
-    public void saveSharedInfo(Auth sharedInfoModel) {
+    public void saveSharedInfo(Shared sharedInfoModel) {
         String json = gson.toJson(sharedInfoModel);
         prefsEditor.putString(SHARED_MODEL, json);
         prefsEditor.commit();
     }
 
-    public Auth getSharedInfo() {
+    public Shared getSharedInfo() {
         String json = appSharedPrefs.getString(SHARED_MODEL, "");
-        return gson.fromJson(json, Auth.class);
-
+        return gson.fromJson(json, Shared.class);
     }
+
+    public void deleteSharedInfo() {
+       appSharedPrefs.edit().remove(SHARED_MODEL).apply();
+    }
+
 
 }

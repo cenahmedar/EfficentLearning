@@ -13,17 +13,20 @@
         android:supportsRtl="true"
         android:theme="@style/CustomNoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".admin.activities.AdminCourseActivity"></activity>
-        <activity android:name=".admin.activities.AdminTeacherActivity" />
-        <activity android:name=".admin.activities.AdminUserActivity" />
-        <activity android:name=".admin.activities.AdminStudentActivity" />
-        <activity android:name=".admin.activities.AdminHomeActivity">
+        <activity android:name=".teacher.activites.TeacherHomeActivity"></activity>
+        <activity android:name=".student.activities.StudentHomeActivity" />
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".admin.activities.AdminCourseActivity" />
+        <activity android:name=".admin.activities.AdminTeacherActivity" />
+        <activity android:name=".admin.activities.AdminUserActivity" />
+        <activity android:name=".admin.activities.AdminStudentActivity" />
+        <activity android:name=".admin.activities.AdminHomeActivity" />
         <activity android:name=".LoginActivity" />
     </application>
 

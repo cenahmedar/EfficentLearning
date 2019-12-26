@@ -3,6 +3,8 @@ package com.cenah.efficentlearning.rest.services;
 import com.cenah.efficentlearning.models.Auth;
 import com.cenah.efficentlearning.models.AuthBody;
 import com.cenah.efficentlearning.models.User;
+import com.cenah.efficentlearning.models.UserRole;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -15,7 +17,7 @@ public interface UserService {
     Call<Auth> Login(@Body AuthBody authBody);
 
     @GET("api/User/GetUserWithRole")
-    Call<User> GetUserWithRole( @Header("Authorization") String authHeader);
+    Call<UserRole> GetUserWithRole(@Header("Authorization") String authHeader);
 
     @POST("api/Account/Register")
     Call<User> Register(@Body User user, @Header("Authorization") String authHeader);
