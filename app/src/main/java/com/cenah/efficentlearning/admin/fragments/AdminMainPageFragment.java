@@ -15,19 +15,19 @@ import com.cenah.efficentlearning.admin.activities.AdminCourseActivity;
 import com.cenah.efficentlearning.admin.activities.AdminStudentActivity;
 import com.cenah.efficentlearning.admin.activities.AdminTeacherActivity;
 import com.cenah.efficentlearning.admin.activities.AdminUserActivity;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
+import com.cenah.efficentlearning.helpers.WaitBar;
 
 
 public class AdminMainPageFragment extends Fragment {
 
     private View rootView;
-    private PrograssBarDialog prograssBarDialog;
+    private WaitBar waitBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_admin_main_page, container, false);
 
-        prograssBarDialog = new PrograssBarDialog(getActivity());
+        waitBar = new WaitBar(getActivity());
         clicklistners();
 
         return rootView;

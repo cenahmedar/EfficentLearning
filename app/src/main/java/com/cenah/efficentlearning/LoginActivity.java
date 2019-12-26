@@ -9,17 +9,15 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cenah.efficentlearning.admin.activities.AdminHomeActivity;
-import com.cenah.efficentlearning.helpers.ApplicationPreferenceManager;
+import com.cenah.efficentlearning.helpers.Apm;
 import com.cenah.efficentlearning.helpers.AuthMainPageIntent;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
+import com.cenah.efficentlearning.helpers.WaitBar;
 import com.cenah.efficentlearning.models.Auth;
 import com.cenah.efficentlearning.models.AuthBody;
 import com.cenah.efficentlearning.models.Shared;
-import com.cenah.efficentlearning.models.User;
 import com.cenah.efficentlearning.models.UserRole;
-import com.cenah.efficentlearning.rest.RestFullHelper;
-import com.cenah.efficentlearning.rest.services.UserService;
+import com.cenah.efficentlearning.restfull.RestFullHelper;
+import com.cenah.efficentlearning.restfull.services.UserService;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private UserService userService;
     private EditText edtUserName, edtPass;
-    private PrograssBarDialog prograssBarDialog;
+    private WaitBar waitBar;
 
 
     @Override
@@ -42,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         edtUserName = findViewById(R.id.edtUserName);
         edtPass = findViewById(R.id.edtPass);
-        prograssBarDialog = new PrograssBarDialog(LoginActivity.this);
+        waitBar = new WaitBar(LoginActivity.this);
 
 
         userService = new RestFullHelper().getUnsafeUserClient();
@@ -51,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                startActivity(new Intent(getApplicationContext(),HomePageActivity.class));
 //                finish();
-                prograssBarDialog.show();
+                waitBar.show();
                 AuthBody body = new AuthBody(edtUserName.getText().toString().trim(), edtPass.getText().toString().trim());
                 Call<Auth> call = userService.Login(body);
                 call.enqueue(new Callback<Auth>() {
@@ -64,17 +62,24 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        prograssBarDialog.hide();
+                        waitBar.hide();
                         GetUserWithRole(response.body());
 
                     }
 
                     @Override
                     public void onFailure(@NotNull Call<Auth> call, @NotNull Throwable t) {
-                        prograssBarDialog.hide();
+                        waitBar.hide();
                         Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
             }
         });
 
@@ -82,18 +87,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void GetUserWithRole(final Auth body) {
-        prograssBarDialog.show();
+        waitBar.show();
         Call<UserRole> call = userService.GetUserWithRole("Bearer " +body.token);
         call.enqueue(new Callback<UserRole>() {
             @Override
             public void onResponse(Call<UserRole> call, Response<UserRole> response) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 if (!response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                      return;
                 }
                 Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
-                new ApplicationPreferenceManager(getApplicationContext()).saveSharedInfo(new Shared(response.body(),body));
+                new Apm(getApplicationContext()).saveSharedInfo(new Shared(response.body(),body));
                 new AuthMainPageIntent(response.body(),LoginActivity.this).Page();
 
 
@@ -101,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserRole> call, Throwable t) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

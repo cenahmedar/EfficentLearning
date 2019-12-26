@@ -12,12 +12,12 @@ import com.cenah.efficentlearning.R;
 
 import java.util.Objects;
 
-public class PrograssBarDialog {
+public class WaitBar {
     private Context context;
     private Dialog dialogTransparent;
 
 
-    public PrograssBarDialog(Context context) {
+    public WaitBar(Context context) {
         this.context = context;
         dialogTransparent = new Dialog(context, android.R.style.Theme_Black);
         @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.remove_border, null);

@@ -2,7 +2,6 @@ package com.cenah.efficentlearning.student.fragments;
 
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
 
 /**
  * A simple {@link Fragment} subclass.

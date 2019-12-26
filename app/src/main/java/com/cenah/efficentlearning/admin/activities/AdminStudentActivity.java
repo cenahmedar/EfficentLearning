@@ -10,16 +10,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.cenah.efficentlearning.LoginActivity;
 import com.cenah.efficentlearning.R;
 import com.cenah.efficentlearning.admin.adapters.AdimStudentAdapter;
-import com.cenah.efficentlearning.helpers.ApplicationPreferenceManager;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
-import com.cenah.efficentlearning.models.Auth;
+import com.cenah.efficentlearning.helpers.Apm;
+import com.cenah.efficentlearning.helpers.WaitBar;
 import com.cenah.efficentlearning.models.Student;
-import com.cenah.efficentlearning.rest.RestFullHelper;
-import com.cenah.efficentlearning.rest.services.StudentService;
-import com.google.gson.JsonElement;
+import com.cenah.efficentlearning.restfull.RestFullHelper;
+import com.cenah.efficentlearning.restfull.services.StudentService;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +29,7 @@ import retrofit2.Response;
 
 public class AdminStudentActivity extends AppCompatActivity implements  AdimStudentAdapter.OnStudentClick {
 
-    private PrograssBarDialog prograssBarDialog;
+    private WaitBar waitBar;
     private Toolbar toolbar;
     private Activity activity;
     private StudentService studentService;
@@ -42,7 +39,7 @@ public class AdminStudentActivity extends AppCompatActivity implements  AdimStud
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_student);
-        prograssBarDialog = new PrograssBarDialog(AdminStudentActivity.this);
+        waitBar = new WaitBar(AdminStudentActivity.this);
         activity = this;
         setToolBar();
 
@@ -61,12 +58,12 @@ public class AdminStudentActivity extends AppCompatActivity implements  AdimStud
     }
 
     private void getStudents() {
-        prograssBarDialog.show();
-        Call<ArrayList<Student>> call = studentService.GetAllStudents("Bearer " +new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token);
+        waitBar.show();
+        Call<ArrayList<Student>> call = studentService.GetAllStudents("Bearer " +new Apm(activity).getSharedInfo().getAuth().token);
         call.enqueue(new Callback<ArrayList<Student>>() {
             @Override
             public void onResponse(@NotNull Call<ArrayList<Student>> call, @NotNull Response<ArrayList<Student>> response) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 if (!response.isSuccessful()){
                     Toast.makeText(AdminStudentActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
@@ -78,7 +75,7 @@ public class AdminStudentActivity extends AppCompatActivity implements  AdimStud
 
             @Override
             public void onFailure(@NotNull Call<ArrayList<Student>> call, @NotNull Throwable t) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 Toast.makeText(AdminStudentActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

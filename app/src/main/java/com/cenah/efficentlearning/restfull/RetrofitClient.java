@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.rest;
+package com.cenah.efficentlearning.restfull;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

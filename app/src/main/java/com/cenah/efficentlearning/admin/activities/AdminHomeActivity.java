@@ -5,20 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.cenah.efficentlearning.admin.fragments.AdminMainPageFragment;
-import com.cenah.efficentlearning.admin.fragments.AdminProfileFragment;
+import com.cenah.efficentlearning.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.cenah.efficentlearning.R;
@@ -47,7 +43,7 @@ public class AdminHomeActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.profile:
-                        fragment = new AdminProfileFragment();
+                        fragment = new ProfileFragment();
                         setFragment(fragment, false);
 
                         return true;

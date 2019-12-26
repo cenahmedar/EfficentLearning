@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.cenah.efficentlearning.R;
 import com.cenah.efficentlearning.admin.fragments.AdminMainPageFragment;
-import com.cenah.efficentlearning.admin.fragments.AdminProfileFragment;
+import com.cenah.efficentlearning.ProfileFragment;
 import com.cenah.efficentlearning.student.fragments.StudentMainPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,7 +42,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.profile:
-                        fragment = new AdminProfileFragment();
+                        fragment = new ProfileFragment();
                         setFragment(fragment, false);
 
                         return true;

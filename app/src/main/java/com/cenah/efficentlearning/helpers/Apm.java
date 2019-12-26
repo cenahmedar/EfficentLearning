@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class ApplicationPreferenceManager {
+public class Apm {
 
 
     private static final String APP_SHARED_PREFS = "auth-preferences";
@@ -23,7 +23,7 @@ public class ApplicationPreferenceManager {
     private Context context;
 
     @SuppressLint("CommitPrefEdits")
-    public ApplicationPreferenceManager(Context context) {
+    public Apm(Context context) {
         this.appSharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS, MODE_PRIVATE);
         this.prefsEditor = appSharedPrefs.edit();
         this.context = context;

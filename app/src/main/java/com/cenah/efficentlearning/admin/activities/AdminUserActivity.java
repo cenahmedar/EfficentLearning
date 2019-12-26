@@ -8,14 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
+import com.cenah.efficentlearning.helpers.WaitBar;
 
 import java.util.Objects;
 
 public class AdminUserActivity extends AppCompatActivity {
 
 
-    private PrograssBarDialog prograssBarDialog;
+    private WaitBar waitBar;
     private Toolbar toolbar;
     private Activity activity;
 
@@ -24,7 +24,7 @@ public class AdminUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user);
         activity = this;
-        prograssBarDialog = new PrograssBarDialog(activity);
+        waitBar = new WaitBar(activity);
 
         setToolBar();
     }

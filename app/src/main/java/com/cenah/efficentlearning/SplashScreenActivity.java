@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import com.cenah.efficentlearning.helpers.ApplicationPreferenceManager;
+import com.cenah.efficentlearning.helpers.Apm;
 import com.cenah.efficentlearning.helpers.AuthMainPageIntent;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -21,11 +21,11 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         rootView = getWindow().getDecorView().getRootView();
 
-        if (new ApplicationPreferenceManager(getApplicationContext()).getSharedInfo() != null) {
+        if (new Apm(getApplicationContext()).getSharedInfo() != null) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    new AuthMainPageIntent(new ApplicationPreferenceManager(SplashScreenActivity.this).getSharedInfo().getUserRole(),SplashScreenActivity.this).Page();
+                    new AuthMainPageIntent(new Apm(SplashScreenActivity.this).getSharedInfo().getUserRole(),SplashScreenActivity.this).Page();
                 }
             }, 2000);
         } else {

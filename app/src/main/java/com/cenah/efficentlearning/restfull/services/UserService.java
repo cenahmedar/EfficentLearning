@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.rest.services;
+package com.cenah.efficentlearning.restfull.services;
 
 import com.cenah.efficentlearning.models.Auth;
 import com.cenah.efficentlearning.models.AuthBody;
@@ -20,6 +20,7 @@ public interface UserService {
     Call<UserRole> GetUserWithRole(@Header("Authorization") String authHeader);
 
     @POST("api/Account/Register")
-    Call<User> Register(@Body User user, @Header("Authorization") String authHeader);
+    Call<User> Register(@Body User user);
+
 
 }

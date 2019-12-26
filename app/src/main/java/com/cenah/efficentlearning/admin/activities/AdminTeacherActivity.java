@@ -20,23 +20,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.admin.adapters.AdimStudentAdapter;
 import com.cenah.efficentlearning.admin.adapters.AdminTeacherAdapter;
-import com.cenah.efficentlearning.helpers.ApplicationPreferenceManager;
+import com.cenah.efficentlearning.helpers.Apm;
 import com.cenah.efficentlearning.helpers.PasswordValidation;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
-import com.cenah.efficentlearning.models.Student;
+import com.cenah.efficentlearning.helpers.WaitBar;
 import com.cenah.efficentlearning.models.Teacher;
 import com.cenah.efficentlearning.models.TeacherCreateModel;
-import com.cenah.efficentlearning.rest.RestFullHelper;
-import com.cenah.efficentlearning.rest.services.TeacherService;
+import com.cenah.efficentlearning.restfull.RestFullHelper;
+import com.cenah.efficentlearning.restfull.services.TeacherService;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -45,7 +40,7 @@ import retrofit2.Response;
 
 public class AdminTeacherActivity extends AppCompatActivity implements AdminTeacherAdapter.OnClick {
 
-    private PrograssBarDialog prograssBarDialog;
+    private WaitBar waitBar;
     private Toolbar toolbar;
     private Activity activity;
     private RecyclerView recyclerView;
@@ -56,7 +51,7 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_teacher);
         activity = this;
-        prograssBarDialog = new PrograssBarDialog(activity);
+        waitBar = new WaitBar(activity);
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -153,13 +148,13 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
     }
 
     private void addTeacher(TeacherCreateModel teacher, final AlertDialog alertDialog) {
-        prograssBarDialog.show();
+        waitBar.show();
 
-        Call<TeacherCreateModel> call = service.Post("Bearer " + new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token, teacher);
+        Call<TeacherCreateModel> call = service.Post("Bearer " + new Apm(activity).getSharedInfo().getAuth().token, teacher);
         call.enqueue(new Callback<TeacherCreateModel>() {
             @Override
             public void onResponse(Call<TeacherCreateModel> call, Response<TeacherCreateModel> response) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 if (!response.isSuccessful()) {
                     Toast.makeText(AdminTeacherActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
@@ -172,20 +167,20 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
 
             @Override
             public void onFailure(Call<TeacherCreateModel> call, Throwable t) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 Toast.makeText(AdminTeacherActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void getTeachers() {
-        prograssBarDialog.show();
-        String auth = new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token;
-        Call<ArrayList<Teacher>> call = service.GetAll("Bearer " + new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token);
+        waitBar.show();
+        String auth = new Apm(activity).getSharedInfo().getAuth().token;
+        Call<ArrayList<Teacher>> call = service.GetAll("Bearer " + new Apm(activity).getSharedInfo().getAuth().token);
         call.enqueue(new Callback<ArrayList<Teacher>>() {
             @Override
             public void onResponse(@NotNull Call<ArrayList<Teacher>> call, @NotNull Response<ArrayList<Teacher>> response) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 if (!response.isSuccessful()) {
                     Toast.makeText(AdminTeacherActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
@@ -197,7 +192,7 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
 
             @Override
             public void onFailure(@NotNull Call<ArrayList<Teacher>> call, @NotNull Throwable t) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 Toast.makeText(AdminTeacherActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -288,14 +283,14 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
     }
 
     private void deleteTeacher(Teacher model) {
-        prograssBarDialog.show();
-        String auth = new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token;
-        Call<Teacher> call = service.Delete("Bearer " + new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token,model.getId());
+        waitBar.show();
+        String auth = new Apm(activity).getSharedInfo().getAuth().token;
+        Call<Teacher> call = service.Delete("Bearer " + new Apm(activity).getSharedInfo().getAuth().token,model.getId());
 
         call.enqueue(new Callback<Teacher>() {
             @Override
             public void onResponse(Call<Teacher> call, Response<Teacher> response) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 if (!response.isSuccessful()) {
                     Toast.makeText(AdminTeacherActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
@@ -307,21 +302,21 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
 
             @Override
             public void onFailure(Call<Teacher> call, Throwable t) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 Toast.makeText(AdminTeacherActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void editTeacher(Teacher model,final AlertDialog alertDialog) {
-        prograssBarDialog.show();
-        String auth = new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token;
-        Call<Teacher> call = service.Update("Bearer " + new ApplicationPreferenceManager(activity).getSharedInfo().getAuth().token,model);
+        waitBar.show();
+        String auth = new Apm(activity).getSharedInfo().getAuth().token;
+        Call<Teacher> call = service.Update("Bearer " + new Apm(activity).getSharedInfo().getAuth().token,model);
 
         call.enqueue(new Callback<Teacher>() {
             @Override
             public void onResponse(Call<Teacher> call, Response<Teacher> response) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 if (!response.isSuccessful()) {
                     Toast.makeText(AdminTeacherActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
@@ -334,7 +329,7 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
 
             @Override
             public void onFailure(Call<Teacher> call, Throwable t) {
-                prograssBarDialog.hide();
+                waitBar.hide();
                 Toast.makeText(AdminTeacherActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

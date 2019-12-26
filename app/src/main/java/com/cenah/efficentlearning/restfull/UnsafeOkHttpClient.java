@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.rest;
+package com.cenah.efficentlearning.restfull;
 
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;

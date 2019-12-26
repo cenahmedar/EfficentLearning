@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.admin.fragments;
+package com.cenah.efficentlearning;
 
 
 import android.app.Activity;
@@ -11,20 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.widget.Toolbar;
-
-import com.cenah.efficentlearning.LoginActivity;
-import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.helpers.ApplicationPreferenceManager;
-import com.cenah.efficentlearning.helpers.PrograssBarDialog;
+import com.cenah.efficentlearning.helpers.Apm;
+import com.cenah.efficentlearning.helpers.WaitBar;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AdminProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
 
-    private PrograssBarDialog prograssBarDialog;
+    private WaitBar waitBar;
     private Activity activity;
     private View rootView;
 
@@ -35,13 +31,13 @@ public class AdminProfileFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_admin_profile, container, false);
         activity = getActivity();
 
-        prograssBarDialog = new PrograssBarDialog(getActivity());
+        waitBar = new WaitBar(getActivity());
 
 
         rootView.findViewById(R.id.btnLogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ApplicationPreferenceManager(activity).deleteSharedInfo();
+                new Apm(activity).deleteSharedInfo();
                 activity.startActivity(new Intent(activity, LoginActivity.class));
                 activity.finish();
             }

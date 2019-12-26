@@ -1,9 +1,9 @@
-package com.cenah.efficentlearning.rest;
+package com.cenah.efficentlearning.restfull;
 
 
-import com.cenah.efficentlearning.rest.services.StudentService;
-import com.cenah.efficentlearning.rest.services.TeacherService;
-import com.cenah.efficentlearning.rest.services.UserService;
+import com.cenah.efficentlearning.restfull.services.StudentService;
+import com.cenah.efficentlearning.restfull.services.TeacherService;
+import com.cenah.efficentlearning.restfull.services.UserService;
 
 public class RestFullHelper {
 
