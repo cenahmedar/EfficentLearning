@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.teacher.activites;
+package com.cenah.efficentlearning.zpages.student.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.admin.fragments.AdminMainPageFragment;
 import com.cenah.efficentlearning.ProfileFragment;
-import com.cenah.efficentlearning.student.fragments.StudentMainPageFragment;
-import com.cenah.efficentlearning.teacher.fragments.TeacherMainPageFragment;
+import com.cenah.efficentlearning.zpages.student.fragments.StudentMainPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TeacherHomeActivity extends AppCompatActivity {
+public class StudentHomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
@@ -26,8 +24,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_home);
-
+        setContentView(R.layout.activity_student_home);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
@@ -38,7 +35,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
-                        fragment = new TeacherMainPageFragment();
+                        fragment = new StudentMainPageFragment();
                         setFragment(fragment, false);
                         return true;
 
@@ -64,7 +61,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
             }
         });
 
-        fragment = new TeacherMainPageFragment();
+        fragment = new StudentMainPageFragment();
         setFragment(fragment, true);
 
 

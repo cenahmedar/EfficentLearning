@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.admin.adapters;
+package com.cenah.efficentlearning.zpages.teacher.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,23 +11,23 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.models.Student;
-import com.cenah.efficentlearning.models.Teacher;
+import com.cenah.efficentlearning.helpers.DateHelper;
+import com.cenah.efficentlearning.models.Classes;
 
 import java.util.ArrayList;
 
-public class AdminTeacherAdapter extends RecyclerView.Adapter<AdminTeacherAdapter.ViewHolder>{
-    private ArrayList<Teacher> datalist;
+public class TeacherClassAdapter extends RecyclerView.Adapter<TeacherClassAdapter.ViewHolder> {
+    private ArrayList<Classes> datalist;
     private LayoutInflater layoutInflater;
     private Context context;
-    private OnClick onClick;
+    private OnStudentClick onStudentClick;
 
-    public AdminTeacherAdapter(Context context, OnClick onClick, ArrayList<Teacher> data) {
+    public TeacherClassAdapter(Context context, OnStudentClick onFileClick, ArrayList<Classes> data) {
         layoutInflater = LayoutInflater.from(context);
         this.datalist = data;
         setHasStableIds(true);
         this.context = context;
-        this.onClick = onClick;
+        this.onStudentClick = onFileClick;
 
     }
 
@@ -49,15 +49,15 @@ public class AdminTeacherAdapter extends RecyclerView.Adapter<AdminTeacherAdapte
 
     @NonNull
     @Override
-    public AdminTeacherAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = layoutInflater.inflate(R.layout.teacher_item, parent, false);
-        final AdminTeacherAdapter.ViewHolder myViewHolder = new AdminTeacherAdapter.ViewHolder(v);
+        View v = layoutInflater.inflate(R.layout.class_item, parent, false);
+        final ViewHolder myViewHolder = new ViewHolder(v);
         myViewHolder.lnr1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 final int position = myViewHolder.getAdapterPosition();
-                onClick.click(datalist.get(position),position, v);
+                onStudentClick.onClick(datalist.get(position), position, v);
                 return true;
             }
         });
@@ -67,7 +67,7 @@ public class AdminTeacherAdapter extends RecyclerView.Adapter<AdminTeacherAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdminTeacherAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.setIsRecyclable(false);
         holder.setData(datalist.get(position), position);
@@ -77,7 +77,7 @@ public class AdminTeacherAdapter extends RecyclerView.Adapter<AdminTeacherAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView tx_name,tx_surname,tx_email,tx_username;
+        TextView tx_name, tx_surname, tx_email, tx_username;
         CardView lnr1;
 
         ViewHolder(View itemView) {
@@ -89,19 +89,19 @@ public class AdminTeacherAdapter extends RecyclerView.Adapter<AdminTeacherAdapte
             lnr1 = itemView.findViewById(R.id.lnr1);
         }
 
-        void setData(final Teacher clicked, int position) {
-            this.tx_name.setText(clicked.getName()+"");
-            this.tx_surname.setText(clicked.getSurname()+"");
-            this.tx_email.setText(clicked.getEmail()+"");
-            this.tx_username.setText(clicked.getUserName()+"");
+        void setData(final Classes clicked, int position) {
+            this.tx_name.setText(clicked.getDescription() + "");
+            this.tx_surname.setText(clicked.isActive()?"ACTIVE":"NOT ACTIVE");
+            this.tx_email.setText(DateHelper.dateToString(clicked.getCreationTime())  + "");
+
+            if(!clicked.isActive())
+                tx_surname.setTextColor(context.getResources().getColor(R.color.red));
         }
 
     }
 
 
-
-    public interface OnClick {
-        void click(Teacher model, int position, View view);
+    public interface OnStudentClick {
+        void onClick(Classes model, int position, View view);
     }
 }
-

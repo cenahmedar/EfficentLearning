@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.teacher.fragments;
+package com.cenah.efficentlearning.zpages.teacher.fragments;
 
 
 import android.app.Fragment;
@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.teacher.activites.TeacherClassesActivity;
-import com.cenah.efficentlearning.teacher.activites.TeachserStudentActivity;
+import com.cenah.efficentlearning.zpages.teacher.activites.TeacherClassesActivity;
+import com.cenah.efficentlearning.zpages.teacher.activites.TeachserStudentActivity;
 
 
 public class TeacherMainPageFragment extends Fragment {

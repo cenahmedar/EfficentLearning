@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.teacher.adapters;
+package com.cenah.efficentlearning.zpages.admin.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,18 +11,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.helpers.DateHelper;
-import com.cenah.efficentlearning.models.Classes;
+import com.cenah.efficentlearning.models.Student;
 
 import java.util.ArrayList;
 
-public class TeacherClassAdapter extends RecyclerView.Adapter<TeacherClassAdapter.ViewHolder> {
-    private ArrayList<Classes> datalist;
+public class AdimStudentAdapter  extends RecyclerView.Adapter<AdimStudentAdapter.ViewHolder>{
+    private ArrayList<Student> datalist;
     private LayoutInflater layoutInflater;
     private Context context;
     private OnStudentClick onStudentClick;
 
-    public TeacherClassAdapter(Context context, OnStudentClick onFileClick, ArrayList<Classes> data) {
+    public AdimStudentAdapter(Context context,OnStudentClick onFileClick, ArrayList<Student> data) {
         layoutInflater = LayoutInflater.from(context);
         this.datalist = data;
         setHasStableIds(true);
@@ -51,13 +50,13 @@ public class TeacherClassAdapter extends RecyclerView.Adapter<TeacherClassAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = layoutInflater.inflate(R.layout.class_item, parent, false);
+        View v = layoutInflater.inflate(R.layout.student_item, parent, false);
         final ViewHolder myViewHolder = new ViewHolder(v);
         myViewHolder.lnr1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 final int position = myViewHolder.getAdapterPosition();
-                onStudentClick.onClick(datalist.get(position), position, v);
+                onStudentClick.onClick(datalist.get(position),position, v);
                 return true;
             }
         });
@@ -77,7 +76,7 @@ public class TeacherClassAdapter extends RecyclerView.Adapter<TeacherClassAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView tx_name, tx_surname, tx_email, tx_username;
+        TextView tx_name,tx_surname,tx_email,tx_username;
         CardView lnr1;
 
         ViewHolder(View itemView) {
@@ -89,19 +88,18 @@ public class TeacherClassAdapter extends RecyclerView.Adapter<TeacherClassAdapte
             lnr1 = itemView.findViewById(R.id.lnr1);
         }
 
-        void setData(final Classes clicked, int position) {
-            this.tx_name.setText(clicked.getDescription() + "");
-            this.tx_surname.setText(clicked.isActive()?"ACTIVE":"NOT ACTIVE");
-            this.tx_email.setText(DateHelper.dateToString(clicked.getCreationTime())  + "");
-
-            if(!clicked.isActive())
-                tx_surname.setTextColor(context.getResources().getColor(R.color.red));
+        void setData(final Student clicked, int position) {
+            this.tx_name.setText(clicked.getName()+"");
+            this.tx_surname.setText(clicked.getSurname()+"");
+            this.tx_email.setText(clicked.getEmail()+"");
+            this.tx_username.setText(clicked.getUserName()+"");
         }
 
     }
 
 
+
     public interface OnStudentClick {
-        void onClick(Classes model, int position, View view);
+        void onClick(Student model, int position, View view);
     }
 }

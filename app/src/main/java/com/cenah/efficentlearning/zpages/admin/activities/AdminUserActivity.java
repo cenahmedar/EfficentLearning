@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.admin.activities;
+package com.cenah.efficentlearning.zpages.admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

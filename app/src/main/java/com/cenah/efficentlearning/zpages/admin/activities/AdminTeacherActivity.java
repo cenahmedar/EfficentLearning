@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.admin.activities;
+package com.cenah.efficentlearning.zpages.admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.admin.adapters.AdminTeacherAdapter;
+import com.cenah.efficentlearning.zpages.admin.adapters.AdminTeacherAdapter;
 import com.cenah.efficentlearning.helpers.Apm;
 import com.cenah.efficentlearning.helpers.PasswordValidation;
 import com.cenah.efficentlearning.helpers.WaitBar;

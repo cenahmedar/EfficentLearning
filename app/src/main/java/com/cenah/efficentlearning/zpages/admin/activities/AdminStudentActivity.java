@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.admin.activities;
+package com.cenah.efficentlearning.zpages.admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.cenah.efficentlearning.R;
-import com.cenah.efficentlearning.admin.adapters.AdimStudentAdapter;
+import com.cenah.efficentlearning.zpages.admin.adapters.AdimStudentAdapter;
 import com.cenah.efficentlearning.helpers.Apm;
 import com.cenah.efficentlearning.helpers.WaitBar;
 import com.cenah.efficentlearning.models.Student;

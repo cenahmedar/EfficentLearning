@@ -1,5 +1,6 @@
-package com.cenah.efficentlearning.teacher.activites;
+package com.cenah.efficentlearning.zpages.teacher.activites;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -33,7 +35,7 @@ import com.cenah.efficentlearning.models.Course;
 import com.cenah.efficentlearning.restfull.RestFullHelper;
 import com.cenah.efficentlearning.restfull.services.ClassService;
 import com.cenah.efficentlearning.restfull.services.CourseService;
-import com.cenah.efficentlearning.teacher.adapters.TeacherClassAdapter;
+import com.cenah.efficentlearning.zpages.teacher.adapters.TeacherClassAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,14 +46,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TeacherClassesActivity extends AppCompatActivity implements TeacherClassAdapter.OnStudentClick{
+public class TeacherClassesActivity extends AppCompatActivity implements TeacherClassAdapter.OnStudentClick {
 
     private WaitBar waitBar;
     private Activity activity;
     private ClassService classService;
     private RecyclerView recyclerView;
     private CourseService courseService;
-    private int selectedCouse =-1;
+    private int selectedCouse = -1;
 
     private void setToolBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -168,7 +170,7 @@ public class TeacherClassesActivity extends AppCompatActivity implements Teacher
                     Toast.makeText(activity, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ClassCreateModel model = new ClassCreateModel(selectedCouse,ed_desc.getText().toString().trim());
+                ClassCreateModel model = new ClassCreateModel(selectedCouse, ed_desc.getText().toString().trim());
                 addCourse(model, alertDialog);
             }
         });
@@ -220,12 +222,12 @@ public class TeacherClassesActivity extends AppCompatActivity implements Teacher
     private void getAll() {
         waitBar.show();
         String auth = new Apm(activity).getSharedInfo().getAuth().token;
-        Call<ArrayList<Classes>> call = classService.GetClassrooms("Bearer " +new Apm(activity).getSharedInfo().getAuth().token);
+        Call<ArrayList<Classes>> call = classService.GetClassrooms("Bearer " + new Apm(activity).getSharedInfo().getAuth().token);
         call.enqueue(new Callback<ArrayList<Classes>>() {
             @Override
             public void onResponse(@NotNull Call<ArrayList<Classes>> call, @NotNull Response<ArrayList<Classes>> response) {
                 waitBar.hide();
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     Toast.makeText(TeacherClassesActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -253,12 +255,16 @@ public class TeacherClassesActivity extends AppCompatActivity implements Teacher
                 if (item.getItemId() == R.id.menu_edit) {
                     getCourses(model);
                     return true;
-                }
-                if (item.getItemId() == R.id.menu_delete) {
+                } else if (item.getItemId() == R.id.menu_delete) {
                     delete(model);
                     return true;
-                }
-                if (item.getItemId() == R.id. menu_open) {
+                } else if (item.getItemId() == R.id.menu_task) {
+                    new Apm(getApplicationContext()).saveClasses(model);
+                    startActivityForResult(new Intent(TeacherClassesActivity.this, TeacherClassTaskActivity.class), 1);
+                    return true;
+                } else if (item.getItemId() == R.id.menu_ann) {
+                    new Apm(getApplicationContext()).saveClasses(model);
+                    startActivityForResult(new Intent(TeacherClassesActivity.this, TeacherClassAnnouncementActivity.class), 1);
                     return true;
                 }
                 return false;
@@ -350,7 +356,7 @@ public class TeacherClassesActivity extends AppCompatActivity implements Teacher
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setGravity(Gravity.CENTER);
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorCharcoalGray));
-                Course  type = (Course) spinner.getItemAtPosition(position);
+                Course type = (Course) spinner.getItemAtPosition(position);
                 editClass.setCourseId(type.getId());
 
             }
@@ -371,7 +377,7 @@ public class TeacherClassesActivity extends AppCompatActivity implements Teacher
     }
 
     private void editCLass(Classes editClass, final AlertDialog alertDialog) {
-        ClassUpdateModel updateModel = new ClassUpdateModel(editClass.getId(),editClass.getCourseId(),editClass.getDescription());
+        ClassUpdateModel updateModel = new ClassUpdateModel(editClass.getId(), editClass.getCourseId(), editClass.getDescription());
         waitBar.show();
         String auth = new Apm(activity).getSharedInfo().getAuth().token;
         Call<Classes> call = classService.Update("Bearer " + new Apm(activity).getSharedInfo().getAuth().token, updateModel);
@@ -396,5 +402,13 @@ public class TeacherClassesActivity extends AppCompatActivity implements Teacher
                 Toast.makeText(TeacherClassesActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1)
+            getAll();
+
     }
 }

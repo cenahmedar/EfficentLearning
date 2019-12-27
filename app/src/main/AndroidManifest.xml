@@ -13,11 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/CustomNoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".teacher.activites.TeachserStudentActivity"></activity>
+        <activity android:name=".zpages.teacher.activites.TeacherClassAnnouncementActivity"></activity>
+        <activity android:name=".zpages.teacher.activites.TeacherClassTaskActivity" />
+        <activity android:name=".zpages.teacher.activites.TeachserStudentActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".teacher.activites.TeacherClassesActivity" />
-        <activity android:name=".teacher.activites.TeacherHomeActivity" />
-        <activity android:name=".student.activities.StudentHomeActivity" />
+        <activity android:name=".zpages.teacher.activites.TeacherClassesActivity" />
+        <activity android:name=".zpages.teacher.activites.TeacherHomeActivity" />
+        <activity android:name=".zpages.student.activities.StudentHomeActivity" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,11 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".admin.activities.AdminCourseActivity" />
-        <activity android:name=".admin.activities.AdminTeacherActivity" />
-        <activity android:name=".admin.activities.AdminUserActivity" />
-        <activity android:name=".admin.activities.AdminStudentActivity" />
-        <activity android:name=".admin.activities.AdminHomeActivity" />
+        <activity android:name=".zpages.admin.activities.AdminCourseActivity" />
+        <activity android:name=".zpages.admin.activities.AdminTeacherActivity" />
+        <activity android:name=".zpages.admin.activities.AdminUserActivity" />
+        <activity android:name=".zpages.admin.activities.AdminStudentActivity" />
+        <activity android:name=".zpages.admin.activities.AdminHomeActivity" />
         <activity android:name=".LoginActivity" />
     </application>
 

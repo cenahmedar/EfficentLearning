@@ -2,8 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_open"
-        android:title="DETAIL" />
+        android:id="@+id/menu_task"
+        android:title="TASKS" />
+
+    <item
+        android:id="@+id/menu_ann"
+        android:title="ANNOUNCEMENTS" />
 
     <item
         android:id="@+id/menu_edit"

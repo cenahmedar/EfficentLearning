@@ -3,10 +3,10 @@ package com.cenah.efficentlearning.helpers;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.cenah.efficentlearning.admin.activities.AdminHomeActivity;
+import com.cenah.efficentlearning.zpages.admin.activities.AdminHomeActivity;
 import com.cenah.efficentlearning.models.UserRole;
-import com.cenah.efficentlearning.student.activities.StudentHomeActivity;
-import com.cenah.efficentlearning.teacher.activites.TeacherHomeActivity;
+import com.cenah.efficentlearning.zpages.student.activities.StudentHomeActivity;
+import com.cenah.efficentlearning.zpages.teacher.activites.TeacherHomeActivity;
 
 public class AuthMainPageIntent {
 

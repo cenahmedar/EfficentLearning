@@ -1,4 +1,4 @@
-package com.cenah.efficentlearning.admin.activities;
+package com.cenah.efficentlearning.zpages.admin.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,7 @@ import android.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.cenah.efficentlearning.admin.fragments.AdminMainPageFragment;
+import com.cenah.efficentlearning.zpages.admin.fragments.AdminMainPageFragment;
 import com.cenah.efficentlearning.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.cenah.efficentlearning.models.Auth;
+import com.cenah.efficentlearning.models.Classes;
 import com.cenah.efficentlearning.models.Shared;
 import com.google.gson.Gson;
 
@@ -15,7 +16,7 @@ public class Apm {
 
     private static final String APP_SHARED_PREFS = "auth-preferences";
     private static final String SHARED_MODEL = "SHARED_MODEL";
-
+    private static final String SHARED_CLASS = "SHARED_CLASS";
 
     private SharedPreferences appSharedPrefs;
     private SharedPreferences.Editor prefsEditor;
@@ -47,4 +48,14 @@ public class Apm {
     }
 
 
+    public void saveClasses(Classes sharedInfoModel) {
+        String json = gson.toJson(sharedInfoModel);
+        prefsEditor.putString(SHARED_CLASS, json);
+        prefsEditor.commit();
+    }
+
+    public Classes getClasses() {
+        String json = appSharedPrefs.getString(SHARED_CLASS, "");
+        return gson.fromJson(json, Classes.class);
+    }
 }
