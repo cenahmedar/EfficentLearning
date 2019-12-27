@@ -26,6 +26,7 @@ import com.cenah.efficentlearning.helpers.PasswordValidation;
 import com.cenah.efficentlearning.helpers.WaitBar;
 import com.cenah.efficentlearning.models.Teacher;
 import com.cenah.efficentlearning.models.TeacherCreateModel;
+import com.cenah.efficentlearning.models.TeacherUpdateModel;
 import com.cenah.efficentlearning.restfull.RestFullHelper;
 import com.cenah.efficentlearning.restfull.services.TeacherService;
 
@@ -309,9 +310,10 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
     }
 
     private void editTeacher(Teacher model,final AlertDialog alertDialog) {
+        TeacherUpdateModel teacherUpdateModel = new TeacherUpdateModel(model.getName(),model.getSurname());
         waitBar.show();
         String auth = new Apm(activity).getSharedInfo().getAuth().token;
-        Call<Teacher> call = service.Update("Bearer " + new Apm(activity).getSharedInfo().getAuth().token,model);
+        Call<Teacher> call = service.Update("Bearer " + new Apm(activity).getSharedInfo().getAuth().token,teacherUpdateModel);
 
         call.enqueue(new Callback<Teacher>() {
             @Override

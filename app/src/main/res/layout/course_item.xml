@@ -65,55 +65,6 @@
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email: "
-                android:textColor="@color/colorCharcoalGray" />
-
-
-            <TextView
-                android:id="@+id/tx_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="asdsad "
-                android:textColor="@color/colorCharcoalGray"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username: "
-                android:textColor="@color/colorCharcoalGray" />
-
-
-            <TextView
-                android:id="@+id/tx_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="asdsad "
-                android:textColor="@color/colorCharcoalGray"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
 
 
 

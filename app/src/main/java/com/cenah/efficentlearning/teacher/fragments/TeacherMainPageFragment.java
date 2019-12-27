@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cenah.efficentlearning.R;
+import com.cenah.efficentlearning.teacher.activites.TeacherClassesActivity;
+import com.cenah.efficentlearning.teacher.activites.TeachserStudentActivity;
 
 
 public class TeacherMainPageFragment extends Fragment {
@@ -39,7 +41,7 @@ public class TeacherMainPageFragment extends Fragment {
         rootView.findViewById(R.id.btnClass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), TeacherClassActivity.class));
+                startActivity(new Intent(getActivity(), TeacherClassesActivity.class));
             }
         });
 

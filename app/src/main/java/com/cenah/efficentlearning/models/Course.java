@@ -7,6 +7,10 @@ public class Course {
     private String givenClassrooms ;
     private int id;
 
+    @Override
+    public String toString() {
+        return name ;
+    }
 
     public String getName() {
         return name;

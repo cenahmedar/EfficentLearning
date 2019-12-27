@@ -2,6 +2,7 @@ package com.cenah.efficentlearning.restfull.services;
 
 import com.cenah.efficentlearning.models.Teacher;
 import com.cenah.efficentlearning.models.TeacherCreateModel;
+import com.cenah.efficentlearning.models.TeacherUpdateModel;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,6 @@ public interface TeacherService {
 
 
     @PUT("api/User/UpdateUser")
-    Call<Teacher> Update(@Header("Authorization") String authHeader,@Body Object object);
+    Call<Teacher> Update(@Header("Authorization") String authHeader,@Body TeacherUpdateModel object);
 
 }

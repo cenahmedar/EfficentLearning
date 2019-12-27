@@ -1,6 +1,7 @@
 package com.cenah.efficentlearning.restfull;
 
 
+import com.cenah.efficentlearning.restfull.services.ClassService;
 import com.cenah.efficentlearning.restfull.services.CourseService;
 import com.cenah.efficentlearning.restfull.services.StudentService;
 import com.cenah.efficentlearning.restfull.services.TeacherService;
@@ -32,4 +33,9 @@ public class RestFullHelper {
     public CourseService getCourseClient() {
         return RetrofitClient.getUnsafeClient(BASE_URL).create(CourseService.class);
     }
+
+    public ClassService getClassClient() {
+        return RetrofitClient.getUnsafeClient(BASE_URL).create(ClassService.class);
+    }
+
 }

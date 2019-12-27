@@ -307,6 +307,7 @@ public class AdminCourseActivity extends AppCompatActivity implements AdminCours
                     Toast.makeText(activity, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                model.setName(ed_name.getText().toString().trim());
                 editCourse(model, alertDialog);
             }
         });

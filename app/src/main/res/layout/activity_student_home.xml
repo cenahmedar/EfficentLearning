@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/main_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/cardsp"
-        android:layout_alignParentTop="true">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-    </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:textSize="25sp">
+
+        </TextView>
+
+
+
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:labelVisibilityMode="unlabeled">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_alignBottom="@+id/main_layout"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/shadow"
-        android:visibility="gone"/>
+        android:background="@drawable/shadow" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardsp"
+    <FrameLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemIconTint="@color/bottom_nav_color"
-            app:itemTextColor="@color/bottom_nav_color">
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 
 
-</RelativeLayout>
+</LinearLayout>
