@@ -31,4 +31,6 @@
     <color name="zxing_transparent">#00000000</color>
 
     <color name="red">#F44336</color>
+
+    <color name="grey">#bfbfbf</color>
 </resources>

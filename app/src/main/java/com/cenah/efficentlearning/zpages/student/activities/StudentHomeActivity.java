@@ -13,6 +13,7 @@ import android.view.View;
 import com.cenah.efficentlearning.R;
 import com.cenah.efficentlearning.ProfileFragment;
 import com.cenah.efficentlearning.zpages.student.fragments.StudentMainPageFragment;
+import com.cenah.efficentlearning.zpages.student.fragments.StudentNotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class StudentHomeActivity extends AppCompatActivity {
@@ -26,9 +27,9 @@ public class StudentHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        bottomNavigationView.inflateMenu(R.menu.nav_admin_items);
+        bottomNavigationView.inflateMenu(R.menu.nav_student_items);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -36,21 +37,19 @@ public class StudentHomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         fragment = new StudentMainPageFragment();
-                        setFragment(fragment, false);
+                        setFragment(fragment);
                         return true;
 
                     case R.id.profile:
                         fragment = new ProfileFragment();
-                        setFragment(fragment, false);
+                        setFragment(fragment);
 
                         return true;
 
-              /*      case R.id.notificatons:
-                        androidx.fragment.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.main_layout, new NotificationFragment());
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                        return true;*/
+                    case R.id.notificatons:
+                        fragment = new StudentNotificationFragment();
+                        setFragment(fragment);
+                        return true;
 
                     default:
                         return false;
@@ -62,12 +61,12 @@ public class StudentHomeActivity extends AppCompatActivity {
         });
 
         fragment = new StudentMainPageFragment();
-        setFragment(fragment, true);
+        setFragment(fragment);
 
 
     }
 
-    public void setFragment(Fragment fragment,boolean isSatrt) {
+    public void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_layout, fragment);
         // if(!isSatrt) fragmentTransaction.addToBackStack(null);

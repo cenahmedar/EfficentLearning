@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<Auth>() {
                     @Override
                     public void onResponse(@NotNull Call<Auth> call, @NotNull Response<Auth> response) {
+                        waitBar.hide();
                         if (!response.isSuccessful()) {
                             if (response.code() == 400)
                                 Toast.makeText(LoginActivity.this, "invalid email or password", Toast.LENGTH_SHORT).show();
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        waitBar.hide();
+
                         GetUserWithRole(response.body());
 
                     }

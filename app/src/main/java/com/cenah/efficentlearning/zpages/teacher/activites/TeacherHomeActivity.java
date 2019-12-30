@@ -37,12 +37,12 @@ public class TeacherHomeActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         fragment = new TeacherMainPageFragment();
-                        setFragment(fragment, false);
+                        setFragment(fragment);
                         return true;
 
                     case R.id.profile:
                         fragment = new ProfileFragment();
-                        setFragment(fragment, false);
+                        setFragment(fragment);
 
                         return true;
 
@@ -63,12 +63,12 @@ public class TeacherHomeActivity extends AppCompatActivity {
         });
 
         fragment = new TeacherMainPageFragment();
-        setFragment(fragment, true);
+        setFragment(fragment);
 
 
     }
 
-    public void setFragment(Fragment fragment,boolean isSatrt) {
+    public void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_layout, fragment);
         // if(!isSatrt) fragmentTransaction.addToBackStack(null);
