@@ -5,6 +5,7 @@ import com.cenah.efficentlearning.restfull.services.ClassService;
 import com.cenah.efficentlearning.restfull.services.CourseService;
 import com.cenah.efficentlearning.restfull.services.NotificationService;
 import com.cenah.efficentlearning.restfull.services.StudentService;
+import com.cenah.efficentlearning.restfull.services.MaterialService;
 import com.cenah.efficentlearning.restfull.services.TeacherService;
 import com.cenah.efficentlearning.restfull.services.UserService;
 
@@ -42,4 +43,9 @@ public class RestFullHelper {
     public NotificationService getNotificationClient() {
         return RetrofitClient.getUnsafeClient(BASE_URL).create(NotificationService.class);
     }
+
+    public MaterialService getMaterialClient() {
+        return RetrofitClient.getUnsafeClient(BASE_URL).create(MaterialService.class);
+    }
+
 }
