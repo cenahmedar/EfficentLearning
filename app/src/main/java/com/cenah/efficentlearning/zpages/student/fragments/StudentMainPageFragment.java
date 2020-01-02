@@ -2,6 +2,7 @@ package com.cenah.efficentlearning.zpages.student.fragments;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cenah.efficentlearning.R;
+import com.cenah.efficentlearning.zpages.student.activities.StudentClassesActivity;
+import com.cenah.efficentlearning.zpages.student.activities.StudentTokenClassesActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,30 +35,19 @@ public class StudentMainPageFragment extends Fragment {
 
     private void clicklistners() {
 
-     /*   rootView.findViewById(R.id.btnStudent).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.btnClass).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminStudentActivity.class));
+                startActivity(new Intent(getActivity(), StudentTokenClassesActivity.class));
             }
         });
-        rootView.findViewById(R.id.btnTeacher).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.btnClass_join).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminTeacherActivity.class));
+                startActivity(new Intent(getActivity(), StudentClassesActivity.class));
+
             }
         });
-        rootView.findViewById(R.id.btnCourse).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminCourseActivity.class));
-            }
-        });
-        rootView.findViewById(R.id.btnAdmin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), AdminUserActivity.class));
-            }
-        });*/
     }
 
 }

@@ -12,8 +12,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
 
         <LinearLayout
@@ -26,8 +25,9 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+
             <androidx.cardview.widget.CardView
-                android:id="@+id/btnStudent"
+                android:id="@+id/btnClass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -46,14 +46,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="STUDENTS"
+                        android:text="MY CLASSES"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:layout_marginTop="10dp"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/student"/>
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/classs"/>
 
 
                 </LinearLayout>
@@ -67,7 +67,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 app:cardCornerRadius="5dp"
-                android:layout_marginStart="10dp">
+                android:layout_marginStart="10dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -108,7 +109,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/btnCourse"
+                android:id="@+id/btnClass_join"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -127,14 +128,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="COURSES"
+                        android:text="JOIN CLASS"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/course"/>
+                        android:src="@drawable/link"/>
 
 
                 </LinearLayout>
