@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 
 import com.cenah.efficentlearning.models.Auth;
 import com.cenah.efficentlearning.models.Classes;
+import com.cenah.efficentlearning.models.Material;
 import com.cenah.efficentlearning.models.Shared;
 import com.google.gson.Gson;
 
@@ -17,6 +18,8 @@ public class Apm {
     private static final String APP_SHARED_PREFS = "auth-preferences";
     private static final String SHARED_MODEL = "SHARED_MODEL";
     private static final String SHARED_CLASS = "SHARED_CLASS";
+    private static final String SHARED_TASK = "SHARED_TASK";
+
 
     private SharedPreferences appSharedPrefs;
     private SharedPreferences.Editor prefsEditor;
@@ -58,4 +61,16 @@ public class Apm {
         String json = appSharedPrefs.getString(SHARED_CLASS, "");
         return gson.fromJson(json, Classes.class);
     }
+
+    public void saveTask(Material sharedInfoModel) {
+        String json = gson.toJson(sharedInfoModel);
+        prefsEditor.putString(SHARED_TASK, json);
+        prefsEditor.commit();
+    }
+
+    public Material getTask() {
+        String json = appSharedPrefs.getString(SHARED_TASK, "");
+        return gson.fromJson(json, Material.class);
+    }
+
 }

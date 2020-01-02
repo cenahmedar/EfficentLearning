@@ -41,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorAccent"
                 android:text="ADD"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone"/>
 
 
         </LinearLayout>
