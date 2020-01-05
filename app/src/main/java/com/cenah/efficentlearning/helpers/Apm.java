@@ -8,6 +8,7 @@ import com.cenah.efficentlearning.models.Auth;
 import com.cenah.efficentlearning.models.Classes;
 import com.cenah.efficentlearning.models.Material;
 import com.cenah.efficentlearning.models.Shared;
+import com.cenah.efficentlearning.models.TokenClasses;
 import com.google.gson.Gson;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -19,6 +20,8 @@ public class Apm {
     private static final String SHARED_MODEL = "SHARED_MODEL";
     private static final String SHARED_CLASS = "SHARED_CLASS";
     private static final String SHARED_TASK = "SHARED_TASK";
+    private static final String SHARED_Token_TASK = "SHARED_Token_TASK";
+    private static final String SHARED_QUES = "SHARED_QUES";
 
 
     private SharedPreferences appSharedPrefs;
@@ -72,5 +75,29 @@ public class Apm {
         String json = appSharedPrefs.getString(SHARED_TASK, "");
         return gson.fromJson(json, Material.class);
     }
+
+
+    public void saveTokenTask(TokenClasses sharedInfoModel) {
+        String json = gson.toJson(sharedInfoModel);
+        prefsEditor.putString(SHARED_Token_TASK, json);
+        prefsEditor.commit();
+    }
+
+    public TokenClasses getTokenTask() {
+        String json = appSharedPrefs.getString(SHARED_Token_TASK, "");
+        return gson.fromJson(json, TokenClasses.class);
+    }
+
+    public void saveQuestion(Material sharedInfoModel) {
+        String json = gson.toJson(sharedInfoModel);
+        prefsEditor.putString(SHARED_QUES, json);
+        prefsEditor.commit();
+    }
+
+    public Material getQuestion() {
+        String json = appSharedPrefs.getString(SHARED_QUES, "");
+        return gson.fromJson(json, Material.class);
+    }
+
 
 }
