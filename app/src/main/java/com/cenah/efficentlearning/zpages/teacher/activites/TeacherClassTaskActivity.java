@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -236,9 +237,9 @@ public class TeacherClassTaskActivity extends AppCompatActivity implements Teach
 
     private void addTask(MaterialPostModel model, final AlertDialog alertDialog) {
         waitBar.show();
-        materialService.Post("Bearer " + new Apm(activity).getSharedInfo().getAuth().token, model).enqueue(new Callback<MaterialPostModel>() {
+        materialService.Post("Bearer " + new Apm(activity).getSharedInfo().getAuth().token, model).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<MaterialPostModel> call, Response<MaterialPostModel> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 waitBar.hide();
                 if (!response.isSuccessful()) {
                     Toast.makeText(activity, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
@@ -251,7 +252,7 @@ public class TeacherClassTaskActivity extends AppCompatActivity implements Teach
             }
 
             @Override
-            public void onFailure(Call<MaterialPostModel> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 waitBar.hide();
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -404,9 +405,10 @@ public class TeacherClassTaskActivity extends AppCompatActivity implements Teach
 
     private void deleteTask(Material model) {
         waitBar.show();
-        materialService.Delete("Bearer " + new Apm(activity).getSharedInfo().getAuth().token, model.getId()).enqueue(new Callback<Material>() {
+        String s = new Apm(activity).getSharedInfo().getAuth().token;
+        materialService.Delete("Bearer " + new Apm(activity).getSharedInfo().getAuth().token, model.getId()).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(@NotNull Call<Material> call, @NotNull Response<Material> response) {
+            public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
                 waitBar.hide();
                 if (!response.isSuccessful()) {
                     Toast.makeText(activity, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
@@ -418,7 +420,7 @@ public class TeacherClassTaskActivity extends AppCompatActivity implements Teach
             }
 
             @Override
-            public void onFailure(@NotNull Call<Material> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
                 waitBar.hide();
                 Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
             }

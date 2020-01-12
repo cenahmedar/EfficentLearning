@@ -96,13 +96,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             // if (!clicked.isAndroidRead()) this.lnr.setBackgroundColor(context.getResources().getColor(R.color.notification));
             // since there is 2 types of notifications
             if (clicked.getId() == null) {
-
                 this.ln_date.setVisibility(View.GONE);
-                this.tx_desc.setText(clicked.getTitle() + "");
-                this.tx_title.setText(clicked.getProgrammingType() + "");
+                this.tx_desc.setText(DateHelper.dateToString(clicked.getDate()) + "");
+                this.tx_title.setText(clicked.getMessage() + "");
 
             } else {
-
                 this.tx_start_date.setText(DateHelper.dateToString(clicked.getCreationTime()) + "");
                 this.tx_end_date.setText(DateHelper.dateToString(clicked.getDeadline()) + "");
 

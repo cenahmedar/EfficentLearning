@@ -2,10 +2,8 @@ package com.cenah.efficentlearning.models;
 
 public class NotificationGlobalModel {
 
-    private Integer givenPracticeId;
-    private Integer level;
-    private String title;
-    private String programmingType;
+    private String date;
+    private String message;
 
     private Integer id;
     private Integer givenClassroomId;
@@ -13,11 +11,9 @@ public class NotificationGlobalModel {
     private String deadline;
     private String creationTime;
 
-    public NotificationGlobalModel(Integer givenPracticeId, Integer level, String title, String programmingType, Integer id, Integer givenClassroomId, String description, String deadline, String creationTime) {
-        this.givenPracticeId = givenPracticeId;
-        this.level = level;
-        this.title = title;
-        this.programmingType = programmingType;
+    public NotificationGlobalModel(String date, String message, Integer id, Integer givenClassroomId, String description, String deadline, String creationTime) {
+        this.date = date;
+        this.message = message;
         this.id = id;
         this.givenClassroomId = givenClassroomId;
         this.description = description;
@@ -25,36 +21,20 @@ public class NotificationGlobalModel {
         this.creationTime = creationTime;
     }
 
-    public Integer getGivenPracticeId() {
-        return givenPracticeId;
+    public String getDate() {
+        return date;
     }
 
-    public void setGivenPracticeId(Integer givenPracticeId) {
-        this.givenPracticeId = givenPracticeId;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public Integer getLevel() {
-        return level;
+    public String getMessage() {
+        return message;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getProgrammingType() {
-        return programmingType;
-    }
-
-    public void setProgrammingType(String programmingType) {
-        this.programmingType = programmingType;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Integer getId() {

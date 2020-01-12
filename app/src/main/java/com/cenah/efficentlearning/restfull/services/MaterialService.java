@@ -1,5 +1,6 @@
 package com.cenah.efficentlearning.restfull.services;
 
+import com.cenah.efficentlearning.models.Announcement;
 import com.cenah.efficentlearning.models.Material;
 import com.cenah.efficentlearning.models.MaterialAnswer;
 import com.cenah.efficentlearning.models.MaterialAnswerPostModel;
@@ -13,6 +14,7 @@ import com.cenah.efficentlearning.models.UserSuccess;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -29,14 +31,14 @@ public interface MaterialService {
                                                    @Path(value ="givenClassroomId", encoded = true) int givenClassroomId);
 
     @POST("api/Material/Create")
-    Call<MaterialPostModel> Post(@Header("Authorization") String authHeader,@Body MaterialPostModel object);
+    Call<ResponseBody> Post(@Header("Authorization") String authHeader,@Body MaterialPostModel object);
 
     @PUT("api/Material/Update")
     Call<Material> Update(@Header("Authorization") String authHeader,@Body MaterialUpdateModel object);
 
 
     @DELETE("api/Material/Delete/{materialId}")
-    Call<Material> Delete(@Header("Authorization") String authHeader,@Path(value ="materialId", encoded = true) int id);
+    Call<ResponseBody> Delete(@Header("Authorization") String authHeader, @Path(value ="materialId", encoded = true) int id);
 
 
     @GET("api/Material/GetAllMaterialTypes")
@@ -52,7 +54,7 @@ public interface MaterialService {
 
 
     @POST("api/MaterialAnswer/Create")
-    Call<MaterialAnswerPostModel> PostAnswer(@Header("Authorizatio0n") String authHeader,
+    Call<ResponseBody> PostAnswer(@Header("Authorization") String authHeader,
                                        @Body MaterialAnswerPostModel object);
 
 
@@ -79,6 +81,14 @@ public interface MaterialService {
     Call<UserSuccess> GetUserSuccess(@Header("Authorization") String authHeader);
 
     // /api/MaterialAnswer/GetDoneMaterialCount   response int 1
+
+
+
+
+    //ann
+    @GET("api/Announcement/GetAll/{givenClassroomId}")
+    Call<ArrayList<Announcement>> getAnnon(@Header("Authorization") String authHeader,
+                                @Path(value ="givenClassroomId", encoded = true) int givenClassroomId);
 
 
 }

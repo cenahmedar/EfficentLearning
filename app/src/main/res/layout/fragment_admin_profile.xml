@@ -78,6 +78,7 @@
 
 
                                     <TextView
+                                        android:id="@+id/tx_point"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/colorAccent"
@@ -157,6 +158,7 @@
                    </TextView>
 
                    <TextView
+                       android:id="@+id/tx_name"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:textColor="@color/colorCharcoalGray"
@@ -184,6 +186,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/tx_surname"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/colorCharcoalGray"
@@ -211,6 +214,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/tx_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/colorCharcoalGray"
@@ -238,6 +242,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/tx_username"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textColor="@color/colorCharcoalGray"

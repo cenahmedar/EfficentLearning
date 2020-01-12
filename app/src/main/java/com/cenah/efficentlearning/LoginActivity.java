@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         Call<UserRole> call = userService.GetUserWithRole("Bearer " +body.token);
         call.enqueue(new Callback<UserRole>() {
             @Override
-            public void onResponse(Call<UserRole> call, Response<UserRole> response) {
+            public void onResponse(@NotNull Call<UserRole> call, @NotNull Response<UserRole> response) {
                 waitBar.hide();
                 if (!response.isSuccessful()){
                     Toast.makeText(LoginActivity.this, response.code() + "  " + response.message(), Toast.LENGTH_SHORT).show();
@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserRole> call, Throwable t) {
+            public void onFailure(@NotNull Call<UserRole> call, @NotNull Throwable t) {
                 waitBar.hide();
                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }

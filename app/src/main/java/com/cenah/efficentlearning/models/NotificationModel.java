@@ -2,50 +2,31 @@ package com.cenah.efficentlearning.models;
 
 public class NotificationModel {
 
-    private int givenPracticeId;
-    private int level;
-    private String title;
-    private String programmingType;
+
+    private String message;
+    private String date;
+
+    public NotificationModel(String message, String date) {
+        this.message = message;
+        this.date = date;
+    }
 
     public NotificationModel() {
     }
 
-    public NotificationModel(int givenPracticeId, int level, String title, String programmingType) {
-        this.givenPracticeId = givenPracticeId;
-        this.level = level;
-        this.title = title;
-        this.programmingType = programmingType;
+    public String getMessage() {
+        return message;
     }
 
-    public int getGivenPracticeId() {
-        return givenPracticeId;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public void setGivenPracticeId(int givenPracticeId) {
-        this.givenPracticeId = givenPracticeId;
+    public String getDate() {
+        return date;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getProgrammingType() {
-        return programmingType;
-    }
-
-    public void setProgrammingType(String programmingType) {
-        this.programmingType = programmingType;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

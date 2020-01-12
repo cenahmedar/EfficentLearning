@@ -215,7 +215,7 @@ public class AdminTeacherActivity extends AppCompatActivity implements AdminTeac
     public void click(final Teacher model, int position, View view) {
         PopupMenu popup = new PopupMenu(activity, view);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.teacher_pop, popup.getMenu());
+        inflater.inflate(R.menu.admin_teacher_pop, popup.getMenu());
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

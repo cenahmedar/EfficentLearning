@@ -79,7 +79,7 @@ public class StudentNotificationFragment extends Fragment implements Notificatio
                 }
                 if(response.body()!=null)
                 for (NotificationModel model:response.body())
-                    list.add(new NotificationGlobalModel(model.getGivenPracticeId(),model.getLevel(),model.getTitle(),model.getProgrammingType(),
+                    list.add(new NotificationGlobalModel(model.getDate(),model.getMessage(),
                             null,null,null,null,null));
 
                 getOtherNotifications();
@@ -107,7 +107,7 @@ public class StudentNotificationFragment extends Fragment implements Notificatio
                 }
                 if(response.body()!=null)
                     for (NotificaitonMeterial model:response.body())
-                        list.add(new NotificationGlobalModel(null,null,null,null,
+                        list.add(new NotificationGlobalModel(null,null,
                                 model.getId(),model.getGivenClassroomId(),model.getDescription(),model.getDeadline(),model.getCreationTime()));
 
 

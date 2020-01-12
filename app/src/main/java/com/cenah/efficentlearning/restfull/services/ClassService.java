@@ -9,6 +9,7 @@ import com.cenah.efficentlearning.models.TokenClasses;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -61,7 +62,7 @@ public interface ClassService {
 
 
     @POST("api/TakenClassroom/Create")
-    Call<ClassCreateModel> JoinClass(@Header("Authorization") String authHeader, @Body JoinClassModel createModel);
+    Call<ResponseBody> JoinClass(@Header("Authorization") String authHeader, @Body JoinClassModel createModel);
 
     @DELETE("api/TakenClassroom/Delete/{givenClassroomId}")
     Call<ClassCreateModel> DeleteJoin(@Header("Authorization") String authHeader,@Path(value ="givenClassroomId", encoded = true) int id);
