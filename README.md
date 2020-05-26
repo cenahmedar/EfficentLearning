@@ -19,8 +19,8 @@ This app works with:
 2. sqlite.
 
 
-<img src="login.png" width="300" >
-<img src="register.png" width="300" >
+<img src="login.PNG" width="300" >
+<img src="register.PNG" width="300" >
 <img src="admin.jpeg" width="300" >
 <img src="profile.jpeg" width="300" >
 <img src="student.jpeg" width="300" >
