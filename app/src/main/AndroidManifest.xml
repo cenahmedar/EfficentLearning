@@ -13,7 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/CustomNoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".zpages.student.activities.StudentAnswerActivity"></activity>
+        <service
+            android:name=".notificationService.ServiceNotifications"
+            android:exported="false">
+
+        </service>
+
+        <receiver
+            android:name="notificationService.NotafictionReciver"
+            android:permission=""
+            android:priority="2147483647"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.example.Broadcast" />
+            </intent-filter>
+        </receiver>
+
+
+        <activity android:name=".zpages.student.activities.StudentAnswerActivity" />
         <activity android:name=".zpages.student.activities.StudentTokenClassTasksActivity" />
         <activity android:name=".zpages.student.activities.StudentClassesActivity" />
         <activity android:name=".zpages.student.activities.StudentTokenClassesActivity" />

@@ -99,5 +99,16 @@ public class Apm {
         return gson.fromJson(json, Material.class);
     }
 
+    public void saveLastNoti(Material sharedInfoModel) {
+        String json = gson.toJson(sharedInfoModel);
+        prefsEditor.putString(SHARED_QUES, json);
+        prefsEditor.commit();
+    }
+
+    public Material getLastNoti() {
+        String json = appSharedPrefs.getString(SHARED_QUES, "");
+        return gson.fromJson(json, Material.class);
+    }
+
 
 }
